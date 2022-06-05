@@ -15,7 +15,7 @@ public class DebugMacros {
 
         String time = getTime();
 
-        String filename = time + "-" + Path + ".txt";
+        String filename = setFileName(time,Path);
 
         try {
             DebugPrintMgr fw = new DebugPrintMgr("C:\\TesterRoot\\Log\\", filename);
@@ -37,7 +37,7 @@ public class DebugMacros {
 
         String time = getTime();
 
-        String filename = time + "-" + Path + ".txt";
+        String filename = setFileName(time,Path);
 
         try {
             DebugPrintMgr fw = new DebugPrintMgr(folder, filename);
@@ -68,6 +68,10 @@ public class DebugMacros {
         }
     }
 
+    public static void MERGE_TXT(String folder){
+
+    }
+
     /**
      * 配列を出力する。
      * @param fw　プリントオブジェクト
@@ -88,6 +92,19 @@ public class DebugMacros {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String time = sdf.format(timestamp);
         return time;
+    }
+
+    public static String setFileName(String... s){
+        String filename = "";
+        for (int i = 0; i < s.length; i++) {
+            filename += s;
+            if(i == s.length){
+                filename += ".txt";
+            }else{
+                filename += "-";
+            }
+        }
+        return filename;
     }
 
 }
