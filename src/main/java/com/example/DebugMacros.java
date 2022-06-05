@@ -8,7 +8,7 @@ public class DebugMacros {
     /**
      * folderは固定。filenameは"[現在時刻][Path].txt"
      * ex.filename="1999-12-30-12-00-00-test1.txt"
-     * @param Path
+     * @param Path 計測パス
      */
     public static void DEBUG_PRINT(String Path){
         double[] result = LocalMacros.VoltMeasure(Path);
@@ -29,8 +29,8 @@ public class DebugMacros {
     /**
      * filenameは"[現在時刻][Path].txt"
      * ex.filename="1999-12-30-12-00-00-test1.txt"
-     * @param Path
-     * @param folder
+     * @param Path　計測パス
+     * @param folder　txtを保存するフォルダー
      */
     public static void DEBUG_PRINT(String Path,String folder){
         double[] result = LocalMacros.VoltMeasure(Path);
@@ -50,9 +50,9 @@ public class DebugMacros {
 
     /**
      * 自由にファイル出力を指定できる。ただ毎回引数入力するの面倒。
-     * @param Path
-     * @param folder
-     * @param filename
+     * @param Path　計測パス
+     * @param folder　txtを保存するフォルダー
+     * @param filename　txt名
      */
     public static void DEBUG_PRINT(String Path,String folder,String filename){
         double[] result = LocalMacros.VoltMeasure(Path);
@@ -70,8 +70,8 @@ public class DebugMacros {
 
     /**
      * 配列を出力する。
-     * @param fw
-     * @param array
+     * @param fw　プリントオブジェクト
+     * @param array　配列(double)
      * @throws IOException
      */
     public static void printArray(DebugPrintMgr fw,double[] array) throws IOException{
@@ -81,7 +81,7 @@ public class DebugMacros {
 
     /**
      * 時間取得
-     * @return
+     * @return　時間("yyyy-MM-dd-HH-mm-ss")
      */
     public static String getTime(){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
