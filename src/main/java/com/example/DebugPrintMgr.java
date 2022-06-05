@@ -1,5 +1,6 @@
 package com.example;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -12,7 +13,8 @@ public class DebugPrintMgr {
      * @throws IOException
      */
     public DebugPrintMgr(String FullPath) throws IOException{
-        fw = new FileWriter(FullPath);
+        File file = new File(FullPath);
+        fw = new FileWriter(file);
     }
 
     /**
@@ -23,7 +25,8 @@ public class DebugPrintMgr {
      */
     public DebugPrintMgr(String folder,String filename) throws IOException{
         String FullPath = folder + filename;
-        fw = new FileWriter(FullPath);
+        File file = new File(FullPath);
+        fw = new FileWriter(file);
     }
 
     /**
@@ -44,13 +47,24 @@ public class DebugPrintMgr {
     }
 
     /**
-     * 配列を書き込む
+     * Double配列を書き込む
      * @param array
      * @throws IOException
      */
-    public void arraywrite(double[] array) throws IOException{
+    public void writeDoubleArray(double[] array) throws IOException{
         for(int i=0; i < array.length; i++){
-            write(String.valueOf(array[i]));
+            write((String.valueOf(array[i]) + "\n"));
+        }
+    }
+
+    /**
+     * String配列を書き込む
+     * @param array
+     * @throws IOException
+     */
+    public void writeStringArray(String[] array) throws IOException{
+        for(int i=0; i < array.length; i++){
+            write((array[i] + "\n"));
         }
     }
 }
