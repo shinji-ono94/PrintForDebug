@@ -1,8 +1,13 @@
 package com.example;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class DebugMacros {
     /**
@@ -68,8 +73,30 @@ public class DebugMacros {
         }
     }
 
-    public static void MERGE_TXT(String folder){
+    public static void MERGE_TXT(String folder) throws FileNotFoundException, IOException{
+        File file = new File(folder);
+        File[] fileList = file.listFiles();
 
+        int order;
+        ArrayList<String> strList = new ArrayList<String>();
+
+        if(fileList != null){
+            for (int i = 0; i < fileList.length; i++) {
+                order = 0;
+                try (BufferedReader br = new BufferedReader(new FileReader(fileList[i]))) {
+                    String text;
+                    while ((text = br.readLine()) != null) {
+                        String str1 = strList.get(order);
+                        if(i != 0) text=","+text;
+                        String str = str1.concat(text);
+                        strList.set(order,str);
+                        order++;
+                    }
+                }
+            }
+
+            DebugPrintMgr fw = new DebugPrintMgr(folder, "merge.txt");
+        }
     }
 
     /**
@@ -94,6 +121,11 @@ public class DebugMacros {
         return time;
     }
 
+    /**
+     * ファイル名を作成する。
+     * @param s
+     * @return
+     */
     public static String setFileName(String... s){
         String filename = "";
         for (int i = 0; i < s.length; i++) {
